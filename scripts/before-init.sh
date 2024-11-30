@@ -31,4 +31,9 @@ gh auth login
 git remote add origin $1
 git fetch origin
 git merge --allow-unrelated-histories origin/main
+
+# scripts配下のファイルに実行権限を付与
+chmod +x ./scripts/*.sh
+
+# 変更をリモートレポジトリに反映
 git push --set-upstream origin main

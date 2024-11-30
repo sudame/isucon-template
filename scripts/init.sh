@@ -3,7 +3,7 @@
 cd $(dirname $0)/..
 
 # pprotein-agentサービスのインストールと起動
-sudo cp ./system-service/pprotein-agent.srevice /etc/systemd/system
+sudo cp ./system-services/pprotein-agent.srevice /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable pprotein-agent
 sudo systemctl start pprotein-agent
@@ -15,7 +15,7 @@ sudo chown -R $USER:$USER ./var/log
 git switch main
 mkdir -p ./etc
 sudo cp -r /etc/nginx ./etc/nginx
-sudo cp -r /etc/mysql ./ect/mysql
+sudo cp -r /etc/mysql ./etc/mysql
 git add ./etc
 git push origin main
 
