@@ -13,7 +13,7 @@ sudo systemctl start pprotein-agent
 
 # ログディレクトリの所有権変更
 echo "ログディレクトリの所有権を変更しています..."
-sudo chown -R $USER:$USER ./var/log
+sudo chown -R $USER:$USER /var/log
 
 # etcファイルのコピー、Gitに追加
 echo "etcファイルをGit管轄下に入れています..."
@@ -23,6 +23,7 @@ sudo cp -RT /etc/nginx ./etc/nginx
 sudo cp -RT /etc/mysql ./etc/mysql
 sudo chown -R $USER:$USER ./etc
 git add ./etc
+git commit -m 'add etc files'
 git push origin main
 
 # Nginxの設定変更の促し; いつもltsvの設定を探して地味にストレスなので
