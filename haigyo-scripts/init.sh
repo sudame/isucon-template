@@ -11,10 +11,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable pprotein-agent
 sudo systemctl start pprotein-agent
 
-# ログディレクトリの所有権変更
-echo "ログディレクトリの所有権を変更しています..."
-sudo chown -R $USER:$USER /var/log
-
 # etcファイルのコピー、Gitに追加
 echo "etcファイルをGit管轄下に入れています..."
 git switch main

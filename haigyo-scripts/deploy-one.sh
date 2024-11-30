@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cd (dirname $0)/..
+set -eux
+
+cd $(dirname $0)/..
 
 sudo cp -RT ./etc/nginx /etc/nginx
 sudo systemctl restart nginx
