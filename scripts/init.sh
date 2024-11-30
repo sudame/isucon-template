@@ -2,15 +2,24 @@
 
 cd $(dirname $0)/..
 
-# etcファイルのコピー
-mkdir -p ./etc
-sudo cp -r /etc/nginx ./etc/nginx
-sudo cp -r /etc/mysql ./ect/mysql
+# pprotein-agentサービスのインストールと起動
+sudo cp ./system-service/pprotein-agent.srevice /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable pprotein-agent
+sudo systemctl start pprotein-agent
 
 # ログディレクトリの所有権変更
 sudo chown -R $USER:$USER ./var/log
 
-# Nginxの設定変更の促し
+# etcファイルのコピー、Gitに追加
+git switch main
+mkdir -p ./etc
+sudo cp -r /etc/nginx ./etc/nginx
+sudo cp -r /etc/mysql ./ect/mysql
+git add ./etc
+git push origin main
+
+# Nginxの設定変更の促し; いつもltsvの設定を探して地味にストレスなので
 echo "Nginxの設定を変更してください"
 cat << 'EOS'
 log_format ltsv "time:$time_local"
