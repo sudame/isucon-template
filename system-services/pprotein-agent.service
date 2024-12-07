@@ -2,8 +2,8 @@
 Description=pprotein-agent
 
 [Service]
-ExecStart=/home/isucon/webapp/bin/pprotein-agent
-WorkingDirectory=/home/isucon/webapp
+ExecStart=/home/isucon/tools/bin/pprotein-agent
+WorkingDirectory=/home/isucon/tools
 Environment=PATH=$PATH:/usr/local/bin
 Restart=always
 User=root

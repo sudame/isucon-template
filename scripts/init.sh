@@ -2,25 +2,54 @@
 
 set -eux
 
-cd $(dirname $0)/..
+cd $(dirname $0)
+
+#########################
+### Config for global ###
+#########################
 
 # pprotein-agentサービスのインストールと起動
-echo "pprotein-agentサービスをインストール・起動しています..."
-sudo cp ./haigyo-system-services/pprotein-agent.service /etc/systemd/system
+sudo cp ../system-services/pprotein-agent.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable pprotein-agent
 sudo systemctl start pprotein-agent
 
+# Gitの初期設定
+git config --global user.name "haigyo"
+git config --global user.email "haigyo@example.com"
+git config --global init.defaultBranch main
+
+# 使用するツールのインストール
+sudo apt update
+sudo apt install -y gh emacs wget curl unzip
+
+# ghにログイン
+gh auth login
+
+#########################
+### Config for local ###
+#########################
+
+# 例年どおりならたぶんここでしょう
+cd /home/isucon/webapp
+
+# Gitの初期化
+echo "Gitレポジトリの初期化を行います..."
+git init
+
+# gitの初期化
+git init
+git remote add origin https://github.com/haigyo/isucon14_20241208
+git commit --allow-empty -m 'init'
+
 # etcファイルのコピー、Gitに追加
-echo "etcファイルをGit管轄下に入れています..."
-git switch main
 mkdir -p ./etc
 sudo cp -RT /etc/nginx ./etc/nginx
 sudo cp -RT /etc/mysql ./etc/mysql
 sudo chown -R $USER:$USER ./etc
 git add ./etc
 git commit -m 'add etc files'
-git push origin main
+git push --set-upstream origin main
 
 # Nginxの設定変更の促し; いつもltsvの設定を探して地味にストレスなので
 echo "Nginxの設定を変更してください"
