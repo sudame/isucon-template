@@ -33,10 +33,6 @@ gh auth login
 # 例年どおりならたぶんここでしょう
 cd /home/isucon/webapp
 
-# Gitの初期化
-echo "Gitレポジトリの初期化を行います..."
-git init
-
 # gitの初期化
 git init
 git remote add origin https://github.com/haigyo/isucon14_20241208
